@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://h577gfq48lag"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_r1awm"]
+[ext_resource type="PackedScene" uid="uid://djy3j6t3wxvp4" path="res://player.tscn" id="2_bqjbi"]
+[ext_resource type="PackedScene" uid="uid://bdebouttjbygv" path="res://background.tscn" id="2_hu2q8"]
+[ext_resource type="PackedScene" uid="uid://s6iuq31py2aw" path="res://hud.tscn" id="3_r28w0"]
+[ext_resource type="PackedScene" uid="uid://ck5dbmpomymi0" path="res://flash.tscn" id="4_5yotw"]
+[ext_resource type="PackedScene" uid="uid://binjq8jw6k6nv" path="res://pipe_spawner.tscn" id="4_l70ot"]
+[ext_resource type="PackedScene" uid="uid://2g0kjppwcf51" path="res://ground_spawner.tscn" id="5_aepbn"]
+[ext_resource type="Script" path="res://camera_shake.gd" id="6_4rsx4"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_r1awm")
+camera_speed = 200
+
+[node name="Flash" parent="." instance=ExtResource("4_5yotw")]
+
+[node name="Background" parent="." instance=ExtResource("2_hu2q8")]
+
+[node name="HUD" parent="." instance=ExtResource("3_r28w0")]
+
+[node name="Player" parent="." instance=ExtResource("2_bqjbi")]
+z_index = 100
+floor_snap_length = 26.5
+
+[node name="ground_spawner" parent="." instance=ExtResource("5_aepbn")]
+
+[node name="PipeSpawner" parent="." instance=ExtResource("4_l70ot")]
+
+[node name="StartLocation" type="Marker2D" parent="."]
+position = Vector2(70, 339)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(196, 424)
+script = ExtResource("6_4rsx4")
+decay = 2.0
+trauma_power = 1
+max_offset = Vector2(2, 2)
+
+[connection signal="next_pipe" from="." to="PipeSpawner" method="_on_main_next_pipe"]
+[connection signal="bird_collide" from="Player" to="." method="_on_player_bird_collide"]
+[connection signal="bird_collide" from="Player" to="PipeSpawner" method="_on_player_bird_collide"]
+[connection signal="on_player_ready" from="Player" to="." method="_on_player_on_player_ready"]
+[connection signal="on_player_ready" from="Player" to="HUD" method="_on_player_on_player_ready"]

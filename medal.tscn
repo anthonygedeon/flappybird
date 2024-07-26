@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://jrecvn7j4rq2"]
+
+[ext_resource type="Script" path="res://Medal.gd" id="2_mmpsd"]
+[ext_resource type="Texture2D" uid="uid://bmrsqw6f3qe04" path="res://assets/sprites/spark_0.png" id="3_hfg3h"]
+[ext_resource type="Texture2D" uid="uid://c1xahatpla0ve" path="res://assets/sprites/spark_1.png" id="4_spog7"]
+[ext_resource type="Texture2D" uid="uid://dqj82s70b2gpr" path="res://assets/sprites/spark_2.png" id="5_hlw6n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ixka8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hfg3h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_spog7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hlw6n")
+}],
+"loop": true,
+"name": &"sparkle",
+"speed": 5.0
+}]
+
+[node name="Medal" type="TextureRect"]
+texture_filter = 1
+offset_left = 32.0
+offset_top = 62.0
+offset_right = 103.0
+offset_bottom = 132.0
+script = ExtResource("2_mmpsd")
+
+[node name="Sparkle" type="AnimatedSprite2D" parent="."]
+position = Vector2(61, 48)
+scale = Vector2(1.9, 1.9)
+sprite_frames = SubResource("SpriteFrames_ixka8")
+animation = &"sparkle"
+frame_progress = 0.265855
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

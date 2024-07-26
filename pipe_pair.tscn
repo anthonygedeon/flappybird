@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://bfc0bigjs1i5b"]
+
+[ext_resource type="Texture2D" uid="uid://btklflepavxq3" path="res://assets/sprites/pipe_green_top.png" id="1_w0cyk"]
+[ext_resource type="Script" path="res://pipe_pair.gd" id="1_y10vv"]
+[ext_resource type="Texture2D" uid="uid://boaep78gl7l7v" path="res://assets/sprites/pipe_green_bottom.png" id="2_p8svj"]
+[ext_resource type="PackedScene" uid="uid://bq2eu53s22ywv" path="res://successful_pass.tscn" id="3_rqc11"]
+[ext_resource type="Script" path="res://successful_pass.gd" id="4_x72d8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5m3y"]
+size = Vector2(118, 726)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlada"]
+size = Vector2(118, 727)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ustel"]
+size = Vector2(20, 200)
+
+[node name="PipePair" type="Node2D"]
+z_index = -1
+script = ExtResource("1_y10vv")
+
+[node name="TopPipe" type="StaticBody2D" parent="." groups=["top_pipe"]]
+z_index = -2
+position = Vector2(0, -438)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TopPipe"]
+texture_filter = 1
+position = Vector2(0, 1)
+scale = Vector2(4.538, 4.539)
+texture = ExtResource("1_w0cyk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopPipe"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_p5m3y")
+
+[node name="BottomPipe" type="StaticBody2D" parent="." groups=["btm_pipe"]]
+z_index = -2
+position = Vector2(0, 490)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomPipe"]
+texture_filter = 1
+position = Vector2(-1.19209e-07, 1.5378e-05)
+scale = Vector2(4.53846, 4.53846)
+texture = ExtResource("2_p8svj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPipe"]
+visible = false
+shape = SubResource("RectangleShape2D_vlada")
+
+[node name="Gap" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gap"]
+position = Vector2(0, 26)
+shape = SubResource("RectangleShape2D_ustel")
+
+[node name="SuccessfulPass" parent="." instance=ExtResource("3_rqc11")]
+position = Vector2(-1, 0)
+script = ExtResource("4_x72d8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(127, 26)
+scale = Vector2(0.25, 10)
+
+[connection signal="area_entered" from="SuccessfulPass" to="SuccessfulPass" method="_on_area_entered"]
+[connection signal="body_entered" from="SuccessfulPass" to="SuccessfulPass" method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

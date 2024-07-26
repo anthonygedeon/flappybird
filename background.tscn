@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdebouttjbygv"]
+
+[ext_resource type="Texture2D" uid="uid://k7p84eby13tm" path="res://assets/sprites/background_day.png" id="1_c1fba"]
+
+[node name="Background" type="CanvasLayer"]
+layer = -3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+offset_right = 393.0
+offset_bottom = 852.0
+size_flags_vertical = 3
+texture = ExtResource("1_c1fba")

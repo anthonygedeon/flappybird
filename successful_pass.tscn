@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq2eu53s22ywv"]
+
+[ext_resource type="AudioStream" uid="uid://bw60mv1w1yl2r" path="res://assets/audio/sfx_point.wav" id="1_migcm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8obdj"]
+size = Vector2(4, 218)
+
+[node name="SuccessfulPass" type="Area2D" groups=["score"]]
+position = Vector2(-21, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(77, 26)
+shape = SubResource("RectangleShape2D_8obdj")
+
+[node name="Audio_success" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_migcm")

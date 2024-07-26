@@ -1,0 +1,155 @@
+[gd_scene load_steps=22 format=3 uid="uid://dqwv710yl2ney"]
+
+[ext_resource type="Texture2D" uid="uid://cg0a25i4orxub" path="res://assets/sprites/button_rate_normal.png" id="1_3leia"]
+[ext_resource type="Texture2D" uid="uid://cvi2jxvvr8y3h" path="res://assets/sprites/button_play_normal.png" id="1_3wg1r"]
+[ext_resource type="Script" path="res://game_menu.gd" id="1_unmnk"]
+[ext_resource type="PackedScene" uid="uid://bdebouttjbygv" path="res://background.tscn" id="2_k6egi"]
+[ext_resource type="Texture2D" uid="uid://crsq31ytk5ktt" path="res://assets/sprites/button_play_pressed.png" id="2_mvhda"]
+[ext_resource type="Texture2D" uid="uid://bm3uea6rcony0" path="res://assets/sprites/button_rate_pressed.png" id="2_umg11"]
+[ext_resource type="Texture2D" uid="uid://xi3ifjpwpp25" path="res://assets/sprites/button_score_normal.png" id="3_exlvg"]
+[ext_resource type="Texture2D" uid="uid://dp4acloiji6kh" path="res://assets/sprites/button_score_pressed.png" id="4_pr5tt"]
+[ext_resource type="Texture2D" uid="uid://dqggu28r0k0oe" path="res://assets/sprites/label_flappy_bird.png" id="5_trjvt"]
+[ext_resource type="AudioStream" uid="uid://g8jmwss4qcls" path="res://assets/audio/sfx_swooshing.wav" id="9_s1tue"]
+[ext_resource type="Texture2D" uid="uid://dn54nx0pqw647" path="res://assets/sprites/ground.png" id="11_63ioc"]
+[ext_resource type="Texture2D" uid="uid://b1robgg6cixj3" path="res://assets/sprites/bird_blue_0.png" id="12_dgbuk"]
+[ext_resource type="Texture2D" uid="uid://dj2t6u8cnl40t" path="res://assets/sprites/bird_blue_1.png" id="13_lbd6s"]
+[ext_resource type="Texture2D" uid="uid://b24jdgw3nyx5c" path="res://assets/sprites/bird_blue_2.png" id="14_q7v4w"]
+[ext_resource type="Texture2D" uid="uid://drfq3smv3trb2" path="res://assets/sprites/bird_red_0.png" id="15_ihh8g"]
+[ext_resource type="Texture2D" uid="uid://dildqntss2srd" path="res://assets/sprites/bird_red_1.png" id="16_8ilx6"]
+[ext_resource type="Texture2D" uid="uid://bsql8pnuwdnnd" path="res://assets/sprites/bird_red_2.png" id="17_x8urj"]
+[ext_resource type="Texture2D" uid="uid://dr26mcye1k1kt" path="res://assets/sprites/bird_orange_0.png" id="18_usdfx"]
+[ext_resource type="Texture2D" uid="uid://bqjexahjfd67d" path="res://assets/sprites/bird_orange_1.png" id="19_rw2ng"]
+[ext_resource type="Texture2D" uid="uid://c5os5mffcwd7n" path="res://assets/sprites/bird_orange_2.png" id="20_gto1s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8fndo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_dgbuk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_lbd6s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_q7v4w")
+}],
+"loop": true,
+"name": &"blue_flap",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_ihh8g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_8ilx6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_x8urj")
+}],
+"loop": true,
+"name": &"red_flap",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_usdfx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_rw2ng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_gto1s")
+}],
+"loop": true,
+"name": &"yellow_flap",
+"speed": 10.0
+}]
+
+[node name="GameMenu" type="CanvasLayer"]
+script = ExtResource("1_unmnk")
+
+[node name="Background" parent="." instance=ExtResource("2_k6egi")]
+
+[node name="RateButton" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 163.0
+offset_top = 501.0
+offset_right = 227.0
+offset_bottom = 542.0
+texture_normal = ExtResource("1_3leia")
+texture_pressed = ExtResource("2_umg11")
+stretch_mode = 0
+
+[node name="HBoxButtons" type="HBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -121.5
+offset_top = -293.0
+offset_right = 120.5
+offset_bottom = -227.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="StartButton" type="TextureButton" parent="HBoxButtons"]
+process_mode = 1
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("1_3wg1r")
+texture_pressed = ExtResource("2_mvhda")
+stretch_mode = 0
+
+[node name="LeaderBoardButton" type="TextureButton" parent="HBoxButtons"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("3_exlvg")
+texture_pressed = ExtResource("4_pr5tt")
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -123.5
+offset_top = 264.0
+offset_right = 123.5
+offset_bottom = 353.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+texture = ExtResource("5_trjvt")
+
+[node name="WooshAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_s1tue")
+
+[node name="Foreground" type="ParallaxBackground" parent="."]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Foreground"]
+motion_offset = Vector2(1000, 0)
+motion_mirroring = Vector2(393, 0)
+
+[node name="TextureRect" type="TextureRect" parent="Foreground/ParallaxLayer"]
+texture_filter = 1
+offset_top = 678.0
+offset_right = 393.0
+offset_bottom = 852.0
+texture = ExtResource("11_63ioc")
+
+[node name="Bird" type="Node2D" parent="."]
+scale = Vector2(0.75, 0.75)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bird"]
+texture_filter = 1
+position = Vector2(258.667, 561.334)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_8fndo")
+animation = &"yellow_flap"
+
+[connection signal="pressed" from="HBoxButtons/StartButton" to="." method="_on_start_button_pressed"]
